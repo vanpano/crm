@@ -1,0 +1,21 @@
+{
+    "name": "vanpano/crm",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Xhe\\": "lib/Xhe/",
+			"App\\": "src/",
+			"demo\\": "src/Methods/",
+			"CRM\\": "src/CRM/"
+			
+        },
+		"files": ["lib/functions.php"]
+    },
+    "require": {
+        "php": ">=7.0",
+		"twig/twig": "^1.18",
+        "mnapoli/silly": "^1.7",
+		"php-di/php-di": "*",
+        "thingengineer/mysqli-database-class": "dev-master"
+    }
+}
