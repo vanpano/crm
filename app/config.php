@@ -5,10 +5,37 @@ use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
 
 return [
-	Twig_Environment::class => function () {
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../src/CRM/Views');
-        return new \Twig\Environment($loader);
-    },
+	\App\Command\SetCookieForUrlCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\SetCookieForUrlCommand($c);
+	},
+	
+	\App\Command\NavigateCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\NavigateCommand($c);
+	},
+	
+	\App\Command\GoogleFormEmailCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\GoogleFormEmailCommand($c);
+	},
+	
+	\App\Command\GetCookieForUrlCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\GetCookieForUrlCommand($c);
+	},
+	
+	\App\Command\GetCookieCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\GetCookieCommand($c);
+	},
+	
+	\App\Command\SetCookieCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\SetCookieCommand($c);
+	},
+	
+	\App\Command\TestCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\TestCommand($c);
+	},
+	
+	\App\Command\ConnectCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\ConnectCommand($c);
+	},
 	
     'browser' => function (ContainerInterface $c) {
         return new \Xhe\XheBrowser($c->get('client'));
@@ -73,4 +100,9 @@ return [
 	'application' => function (ContainerInterface $c) {
         return new \Xhe\XheApplication($c->get('client'));
     },
+	
+	Twig_Environment::class => function () {
+        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../src/CRM/Views');
+        return new \Twig\Environment($loader);
+    }
 ];

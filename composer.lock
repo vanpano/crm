@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02ff4108ae445fb6e80f3a13756ee9a5",
+    "content-hash": "6fba705ec8344fbaf7a16c689269e2dc",
     "packages": [
         {
             "name": "mnapoli/silly",
@@ -1297,5 +1297,5 @@
         "php": ">=7.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
