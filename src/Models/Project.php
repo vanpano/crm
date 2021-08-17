@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use \dbObject;
 
-class project extends \dbObject {
+class Project extends \dbObject {
 	protected $dbTable = "projects";
 	protected $dbFields = Array(
 		'label' => Array('text', 'required'),
@@ -12,6 +12,6 @@ class project extends \dbObject {
 	);
 	
 	protected $relations = Array (
-        'events' => Array ("hasMany", "event", 'projectId')
+        'events' => Array ("hasMany", "Event", 'projectId')
     );
 }

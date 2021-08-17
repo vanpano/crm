@@ -5,6 +5,18 @@ use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
 
 return [
+	\App\Command\ClearCookiesCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\ClearCookiesCommand($c);
+	},
+	
+	\App\Command\ClearBrowserCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\ClearBrowserCommand($c);
+	},
+	
+	\App\Command\ProfileLoadCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\ProfileLoadCommand($c);
+	},
+	
 	\App\Command\SetCookieForUrlCommand::class => function (ContainerInterface $c) {
 		return new \App\Command\SetCookieForUrlCommand($c);
 	},
@@ -99,10 +111,5 @@ return [
 	
 	'application' => function (ContainerInterface $c) {
         return new \Xhe\XheApplication($c->get('client'));
-    },
-	
-	Twig_Environment::class => function () {
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../src/CRM/Views');
-        return new \Twig\Environment($loader);
     }
 ];
