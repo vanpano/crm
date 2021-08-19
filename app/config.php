@@ -45,6 +45,8 @@ return [
 		return new \App\Command\TestCommand($c);
 	},
 	
+	/* XHE objects to be preloaded */
+	
 	\App\Command\ConnectCommand::class => function (ContainerInterface $c) {
 		return new \App\Command\ConnectCommand($c);
 	},

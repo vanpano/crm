@@ -6,18 +6,12 @@
             "Xhe\\": "lib/Xhe/",
 			"App\\": "src/",
 			"App\\Command\\": "src/Commands/",
-			"App\\Model\\": "src/Models/",
-			"App\\Handler\\": "src/Handlers/",
-			"CRM\\": "src/CRM/"
-			
+			"App\\Model\\": "src/Models/"
         },
 		"files": ["lib/functions.php"]
     },
     "require": {
-	    "monolog/monolog": "^2.0",
-        "php": ">=7.0",
-		"twig/twig": "^3.0",
-        "mnapoli/silly": "^1.7",
+	    "mnapoli/silly": "^1.7",
 		"php-di/php-di": "*",
         "thingengineer/mysqli-database-class": "dev-master",
         "php-di/invoker": "^2.3",
