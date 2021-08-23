@@ -8,11 +8,15 @@ use DI\ContainerBuilder;
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/definitions.php';
 
+$ip = '127.0.0.1';
+$port = 7030;
+
 $containerBuilder = new \DI\ContainerBuilder;
 $containerBuilder->addDefinitions(__DIR__ . '/config.php');
-$container = $containerBuilder->build();
 
+$container = $containerBuilder->build();
 $container->set('db', DI\create(Mysqlidb::class)->constructor('localhost', 'root', '', 'workflow'));
+$container->set('client', DI\create(App\Client::class)->constructor($ip, $port));
 $container->set('test', DI\create(App\Command\TestCommand::class)->constructor($container));
 $container->set('connect', DI\create(App\Command\ConnectCommand::class)->constructor($container));
 $container->set('cookie.set', DI\create(\App\Command\SetCookieCommand::class)->constructor($container));
@@ -22,7 +26,17 @@ $container->set('cookie-url.get', DI\create(\App\Command\GetCookieForUrlCommand:
 $container->set('navigate', DI\create(\App\Command\NavigateCommand::class)->constructor($container));
 //$container->set('profile.load', DI\create(\App\Command\ProfileLoadCommand::class)->constructor($container));
 $container->set('google.form.email', DI\create(\App\Command\GoogleFormEmailCommand::class)->constructor($container));
-$container->set('', DI\create(\App\Command\GoogleFormEmailCommand::class)->constructor($container));
+$container->set('google.login.command', DI\create(\App\Command\GoogleLoginCommand::class)->constructor($container));
+$container->set('pinterest.login.command', DI\create(\App\Command\PinterestLoginCommand::class)->constructor($container));
+
+$container->set('google.login.service', DI\create(\App\Service\LoginService::class)->constructor($container->get('google.login.command')));
+$container->set('pinterest.login.service', DI\create(\App\Service\LoginService::class)->constructor($container->get('pinterest.login.command')));
+
+$container->set('browser.settings', DI\create(\App\Service\BrowserSettingsService::class)->constructor($container));
+
+$container->set('service.cookies.import', DI\create(\App\Service\CookiesImportService::class)->constructor($container->get('cookie-url.set')));
+$container->set('service.cookies.export', DI\create(\App\Service\CookiesExportService::class)->constructor($container->get('cookie-url.get')));
+//$container->set('service.proxy.init', DI\create(\App\Service\ProxyInit::class)->constructor($container->get('proxy.enable')));
 
 /* Get cookies from ORM */
 //$container->set('orm.cookies.get', DI\create(\App\Controller\Cookie::get)->constructor($container));
@@ -38,5 +52,7 @@ $container->set('', DI\create(\App\Command\GoogleFormEmailCommand::class)->const
 
 //$container->set('service.profile.generator', DI\create(\App\Service\Profile::import)->constructor($container, $profile));
 
+$db = $container->get('db');
+dbObject::autoload("models");
 
 return $container;

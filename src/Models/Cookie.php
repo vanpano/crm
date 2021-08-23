@@ -7,6 +7,7 @@ use \dbObject;
 class Cookie extends \dbObject {
 	protected $dbTable = "cookies";
 	protected $dbFields = Array(
-		'entry' => Array('text')
+		'entry' => Array('text'),
+		'url' => Array('text')
 	);
 }

@@ -1,20 +1,50 @@
 <?php
 
 use \Psr\Container\ContainerInterface;
-use \Twig\Loader\FilesystemLoader;
-use \Twig\Environment;
 
 return [
+	/*
 	\App\Command\ClearCookiesCommand::class => function (ContainerInterface $c) {
 		return new \App\Command\ClearCookiesCommand($c);
 	},
+	*/
 	
+	/*
 	\App\Command\ClearBrowserCommand::class => function (ContainerInterface $c) {
 		return new \App\Command\ClearBrowserCommand($c);
 	},
+	*/
 	
+	/*
 	\App\Command\ProfileLoadCommand::class => function (ContainerInterface $c) {
 		return new \App\Command\ProfileLoadCommand($c);
+	},
+	*/
+	
+	
+	\App\Service\ProxyInit::class => function ($command) {
+		return new\App\Service\ProxyInit($command);
+	},
+	
+	
+	\App\Service\CookiesExport::class => function ($command) {
+		return new\App\Service\CookiesExport($command);
+	},
+	
+	\App\Service\CookiesImport::class => function ($command) {
+		return new\App\Service\CookiesImport($command);
+	},
+	
+	\App\Service\LoginService::class => function ($command) {
+		return new\App\Service\LoginService($command);
+	},
+	
+	\App\Command\GoogleLoginCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\GoogleLoginCommand($c);
+	},
+	
+	\App\Command\PinterestLoginCommand::class => function (ContainerInterface $c) {
+		return new \App\Command\PinterestLoginCommand($c);
 	},
 	
 	\App\Command\SetCookieForUrlCommand::class => function (ContainerInterface $c) {
@@ -45,12 +75,12 @@ return [
 		return new \App\Command\TestCommand($c);
 	},
 	
-	/* XHE objects to be preloaded */
-	
 	\App\Command\ConnectCommand::class => function (ContainerInterface $c) {
 		return new \App\Command\ConnectCommand($c);
 	},
 	
+	/* XHE objects to be preloaded */
+
     'browser' => function (ContainerInterface $c) {
         return new \Xhe\XheBrowser($c->get('client'));
     },

@@ -6,7 +6,8 @@
             "Xhe\\": "lib/Xhe/",
 			"App\\": "src/",
 			"App\\Command\\": "src/Commands/",
-			"App\\Model\\": "src/Models/"
+			"App\\Model\\": "src/Models/",
+			"App\\Service\\": "src/Services/"
         },
 		"files": ["lib/functions.php"]
     },

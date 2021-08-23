@@ -1,13 +1,16 @@
 <?php
 
-$ip = '127.0.0.1';
-$port = 7030;
-
 $container = require(__DIR__ . '/../app/bootstrap.php');
-$container->set('client', DI\create(\App\Client::class)->constructor($ip, $port));
 
 $app = new Silly\Application();	
-$app->useContainer($container, $injectWithTypeHint = true);
+$app->useContainer($container, $injectWithTypeHint = false);
+
+$invoker = new Invoker\Invoker(null, $container);
+
+$account = App\Model\Account::getOne();
+
+$invoker->call('browser.settings', [$account]);
+$invoker->call('google.login.service', [$account]);
 
 /*
 $invoker = new Invoker\Invoker(null, $container);
